@@ -7,6 +7,7 @@ function(require, mocha, chai, cloud) {
   expect = chai.expect
   
   require(['test/util.test',
+           'test/util.format.test',
            'test/util.inspect.test'],
   function() {
     if (window.mochaPhantomJS) { mochaPhantomJS.run(); }
