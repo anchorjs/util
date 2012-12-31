@@ -38,7 +38,8 @@ function(util) {
     });
     
     it('exceptions should print the error message, not "{}"', function() {
-      expect(util.inspect(new Error())).to.equal('[Error: ]');
+      //expect(util.inspect(new Error())).to.equal('[Error]');
+      expect(util.inspect(new Error())).to.include('[Error');
       expect(util.inspect(new Error('FAIL'))).to.equal('[Error: FAIL]');
       expect(util.inspect(new TypeError('FAIL'))).to.equal('[TypeError: FAIL]');
       expect(util.inspect(new SyntaxError('FAIL'))).to.equal('[SyntaxError: FAIL]');
@@ -54,6 +55,37 @@ function(util) {
       //assert.ok(ex.indexOf('[message]') != -1);
       //assert.ok(ex.indexOf('[arguments]') != -1);
       //assert.ok(ex.indexOf('[type]') != -1);
+    });
+    
+    it('GH-1941', function() {
+      expect(util.inspect(Object.create(Date.prototype))).to.equal('{}');
+    });
+    
+    it('GH-1944', function() {
+      expect(function() {
+        var d = new Date();
+        d.toUTCString = null;
+        util.inspect(d);
+      }).to.not.throw();
+      
+      expect(function() {
+        var r = /regexp/;
+        r.toString = null;
+        util.inspect(r);
+      }).to.not.throw();
+    });
+    
+    it('bug with user-supplied inspect function returns non-string', function() {
+      expect(function() {
+        util.inspect([{
+          inspect: function() { return 123; }
+        }]);
+      }).to.not.throw();
+    });
+    
+    it('GH-2225', function() {
+      var x = { inspect: util.inspect };
+      expect(util.inspect(x)).to.contain('inspect');
     });
     
   });
