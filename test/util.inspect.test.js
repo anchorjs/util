@@ -88,6 +88,34 @@ function(util) {
       expect(util.inspect(x)).to.contain('inspect');
     });
     
+    it('an object with "hasOwnProperty" overwritten should not throw', function() {
+      expect(function() {
+        util.inspect({
+          hasOwnProperty: null
+        });
+      }).to.not.throw();
+    });
+    
+    it('new API, accepts an "options" object', function() {
+      var subject = { foo: 'bar', hello: 31, a: { b: { c: { d: 0 } } } };
+      Object.defineProperty(subject, 'hidden', { enumerable: false, value: null });
+    
+      expect(util.inspect(subject, { showHidden: false })).to.not.contain('hidden');
+      expect(util.inspect(subject, { showHidden: true })).to.contain('hidden');
+      expect(util.inspect(subject, { depth: 2 })).to.contain('c: [Object]');
+      expect(util.inspect(subject, { depth: 0 })).to.contain('a: [Object]');
+      expect(util.inspect(subject, { depth: null })).to.contain('{ d: 0 }');
+    });
+    
+    it('"customInspect" option can enable/disable calling inspect() on objects', function() {
+      var subject = { inspect: function() { return 123; } };
+    
+      expect(util.inspect(subject, { customInspect: true })).to.contain('123');
+      expect(util.inspect(subject, { customInspect: true })).to.not.contain('inspect');
+      expect(util.inspect(subject, { customInspect: false })).to.not.contain('123');
+      expect(util.inspect(subject, { customInspect: false })).to.contain('inspect');
+    });
+    
   });
   
   return { name: "test.util.inspect" }
