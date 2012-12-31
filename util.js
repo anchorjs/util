@@ -149,7 +149,7 @@ function(exports, clazz) {
     }
   
     // Some type of object without properties can be shortcutted.
-    if (keys.length === 0) {
+    if (keys.length === 0 || (isError(value) && keys.length == 1 && keys[0] == 'message')) {
       if (typeof value === 'function') {
         var name = value.name ? ': ' + value.name : '';
         return ctx.stylize('[Function' + name + ']', 'special');
