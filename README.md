@@ -4,11 +4,13 @@ The util module provides utilities to the Anchor platform.
 
 ## Install
 
+##### component
+
+    $ component install anchorjs/util
+
 ##### volo
 
     $ volo add anchorjs/util
-
-For more information on using volo to manage JavaScript modules, visit [http://volojs.org/](http://volojs.org/).
 
 ## Usage
 
@@ -70,25 +72,30 @@ function MyStream() {
 util.inherits(MyStream, events.EventEmitter);
 ```
 
-## Implements
+## Compatibility
 
-This module conforms to the interface exported by Node's [Utilities](http://nodejs.org/api/util.html)
+##### component
+
+This module uses the [AMD](https://github.com/amdjs/amdjs-api) format.  To
+include in component builds, use [component-amd](https://github.com/jaredhanson/component-amd):
+
+    component build -u component-amd
+
+##### Node
+
+This module implements the interface exported by Node's [Utilities](http://nodejs.org/api/util.html)
 module.
 
 ## Tests
-
-##### Browser
 
 To run tests in a browser, execute the Make target for the desired browser:
 
     $ make test-chrome
     $ make test-firefox
     $ make test-safari
-
-##### PhantomJS
-
-To run headless tests from a terminal using [PhantomJS](http://phantomjs.org/):
-
+    
+Headless tests can be executed directly from a terminal:
+    
     $ make test-phantomjs
 
 ## Credits
