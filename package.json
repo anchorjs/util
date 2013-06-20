@@ -1,7 +1,7 @@
 {
   "name": "util",
   "version": "0.0.1",
-  "description": "Utilities module for Anchor.js.",
+  "description": "General purpose utilities.",
   "repository": {
     "type": "git",
     "url": "git://github.com/anchorjs/util.git"

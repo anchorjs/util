@@ -1,0 +1,14 @@
+{
+  "name": "util",
+  "version": "0.0.1",
+  "description": "General purpose utilities.",
+  "repo": "anchorjs/util",
+  "main": "util.js",
+  "scripts": [
+    "util.js"
+  ],
+  "dependencies": {
+    "anchorjs/class": "*"
+  },
+  "license": "MIT"
+}
