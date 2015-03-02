@@ -1,0 +1,28 @@
+{
+  "name": "util",
+  "version": "0.0.0",
+  "description": "General purpose utilities.",
+  "authors": {
+    "name": "Jared Hanson",
+    "email": "jaredhanson@gmail.com",
+    "homepage": "http://www.jaredhanson.net/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anchorjs/util.git"
+  },
+  "license": "MIT",
+  "main": "main.js",
+  "dependencies": {
+    "class": "git://github.com/anchorjs/class.git#master"
+  },
+  "ignore": [
+    ".gitignore",
+    ".jshintrc",
+    "Makefile",
+    "README.md",
+    "component.json",
+    "package.json",
+    "test"
+  ]
+}
